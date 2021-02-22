@@ -72,12 +72,12 @@ System flow
 =========
 
  <img src="./img/pipeline.png"><br/>
- 1.Local Application uploads the file with the list of images to S3 
-   2.Local Application sends a message (queue) stating of the location of the images list on S3 
- Local Application does one of the two: 
- Starts the manager 
- Checks if a manager is active and if not, starts it 
- 4.Manager downloads list of images 
+ 1.Local Application uploads the file with the list of images to S3<br/>
+ 2.Local Application sends a message (queue) stating of the location of the images list on S3 <br/>
+ Local Application does one of the two: <br/>
+ Starts the manager <br/>
+ Checks if a manager is active and if not, starts it <br/>
+ 4.Manager downloads list of images <br/>
  5.Manager creates an SQS message for each URL in the list of images 
  6.Manager bootstraps nodes to process messages 
  7.Worker gets an image message from an SQS queue 

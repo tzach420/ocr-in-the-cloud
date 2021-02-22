@@ -1,3 +1,5 @@
+package amazontools;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.sqs.AmazonSQS;
@@ -30,30 +32,11 @@ public class SQSHandler {
         this.sqs = AmazonSQSClientBuilder.defaultClient();
     }
 
-    public
-    AmazonSQS getSqs() {
-        return sqs;
-    }
-
-    public void purgeQueue(String queueName){
-        String queueURL = "https://sqs.us-west-2.amazonaws.com/002041186709/" + queueName;
-        PurgeQueueRequest purgeQueueRequest = new PurgeQueueRequest().withQueueUrl(queueURL);
-        try{
-            sqs.purgeQueue(purgeQueueRequest);
-        } catch (Exception e){
-            if (e.getMessage().contains("Only one PurgeQueue operation on QueueUrlLocalApps is allowed every 60 seconds")){
-                System.out.println("The queue was alredy purged in the last minute and we need to wait 60 seconds");
-                try {
-                    Thread.sleep(60000);
-                } catch (InterruptedException ex) {
-                    System.out.println("Purge Queue Exception");
-                    ex.printStackTrace();
-                }
-                sqs.purgeQueue(purgeQueueRequest);
-            }
-        }
-    }
-
+    /**
+     * Creates Queue
+     * @param queueName
+     * @return the queue URL.
+     */
     public String createQueue(String queueName) {
 
         String queueUrl = "";
@@ -68,12 +51,12 @@ public class SQSHandler {
         return queueUrl;
     }
 
-    public
-    List<String> listQueue() {
 
-        return sqs.listQueues("").getQueueUrls();
-    }
-
+    /**
+     * Sends a message to queueUrl
+     * @param queueUrl - queue to send to.
+     * @param message - the message.
+     */
     public void sendMessage(String queueUrl, String message) {
         try {
             SendMessageResult sendMessageResult = this.sqs.sendMessage(new SendMessageRequest(queueUrl, message));
@@ -83,6 +66,13 @@ public class SQSHandler {
         }
     }
 
+    /**
+     * Retrieves one or more messages (up to 10), from the specified queue.
+     * @param queueUrl
+     * @param numOfMessages
+     * @param Visibility
+     * @return list of the messages.
+     */
     public List<Message> recieveMessage(String queueUrl, int numOfMessages, int Visibility){
 
         try {
@@ -102,6 +92,7 @@ public class SQSHandler {
         return null;
     }
 
+
     public void printMessage(Message message){
         System.out.println("  Message");
         System.out.println("    MessageId:     " + message.getMessageId());
@@ -116,6 +107,12 @@ public class SQSHandler {
         System.out.println();
     }
 
+
+    /**
+     * remove a specific message from the queue.
+     * @param queueUrl
+     * @param message
+     */
     public void deleteMessage(String queueUrl, Message message) {
         try {
             String messageRecieptHandle = message.getReceiptHandle();
@@ -144,10 +141,29 @@ public class SQSHandler {
         return queues;
     }
 
-    public void deleteQueue(String queueUrl, String processID){
+    /**
+     * return queue url if exists.
+     * @param queueName- the queue name we want its url.
+     * @return url if the queue exists, null otherwise.
+     */
+    public String getQueueUrl(String queueName){
+        for (String url : getQueueList()) {
+            if (url.contains(queueName)) {
+               return url;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * removes a queue.
+     * @param queueUrl- the queue url.
+     */
+
+    public void deleteQueue(String queueUrl){
 
         try {
-            System.out.println(processID + " Deleting the queue: " + queueUrl + ".\n");
+            System.out.println("Deleting the queue: " + queueUrl + ".\n");
             this.sqs.deleteQueue(new DeleteQueueRequest(queueUrl));
         } catch (AmazonServiceException ase) {
             System.out.println("failed to delete  the queue: " + queueUrl);
@@ -158,16 +174,6 @@ public class SQSHandler {
         }
     }
 
-    public boolean queueExists(String queueName){
-        boolean queueExist = false;
-        for (String url:
-                new SQSHandler().getQueueList()) {
-            if (url.contains(queueName)) {
-                queueExist = true;
-            }
-        }
-        return queueExist;
-    }
 
     private void printServiceError(AmazonServiceException ase){
         System.out.println("Caught an AmazonServiceException, which means your request made it " +

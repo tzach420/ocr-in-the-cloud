@@ -77,7 +77,7 @@ System flow
  3.Local Application does one of the two: <br/>
   * Starts the manager <br/>
   * Checks if a manager is active and if not, starts it <br/>
- 4.Manager downloads list of images <br/>
+4.Manager downloads list of images <br/>
  5.Manager creates an SQS message for each URL in the list of images <br/>
  6.Manager bootstraps nodes to process messages <br/>
  7.Worker gets an image message from an SQS queue <br/>

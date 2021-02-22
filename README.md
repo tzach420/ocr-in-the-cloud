@@ -72,9 +72,8 @@ System flow
 =========
 
  <img src="./img/pipeline.png"><br/>
- 
-1.Local Application uploads the file with the list of images to S3 
- 2.Local Application sends a message (queue) stating of the location of the images list on S3 
+ 1.Local Application uploads the file with the list of images to S3 
+   2.Local Application sends a message (queue) stating of the location of the images list on S3 
  Local Application does one of the two: 
  Starts the manager 
  Checks if a manager is active and if not, starts it 

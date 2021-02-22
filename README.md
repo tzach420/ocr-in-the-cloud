@@ -78,18 +78,18 @@ System flow
  Starts the manager <br/>
  Checks if a manager is active and if not, starts it <br/>
  4.Manager downloads list of images <br/>
- 5.Manager creates an SQS message for each URL in the list of images 
- 6.Manager bootstraps nodes to process messages 
- 7.Worker gets an image message from an SQS queue 
- 8.Worker downloads the image indicated in the message 
- 10.Worker applies OCR on image. 
- 11.Worker puts a message in an SQS queue indicating the original URL of the image and the text. 
- 12.Manager reads all the Workers' messages from SQS and creates one summary file 
- 13.Manager uploads summary file to S3 
- 14.Manager posts an SQS message about summary file 
- 15.Local Application reads SQS message 
- 16.Local Application downloads summary file from S3 
- 16.Local Application creates html output files 
+ 5.Manager creates an SQS message for each URL in the list of images <br/>
+ 6.Manager bootstraps nodes to process messages <br/>
+ 7.Worker gets an image message from an SQS queue <br/>
+ 8.Worker downloads the image indicated in the message <br/>
+ 10.Worker applies OCR on image. <br/>
+ 11.Worker puts a message in an SQS queue indicating the original URL of the image and the text. <br/>
+ 12.Manager reads all the Workers' messages from SQS and creates one summary file <br/>
+ 13.Manager uploads summary file to S3 <br/>
+ 14.Manager posts an SQS message about summary file <br/>
+ 15.Local Application reads SQS message <br/>
+ 16.Local Application downloads summary file from S3 <br/>
+ 16.Local Application creates html output files <br/>
  
 How to run
 =========

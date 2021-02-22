@@ -70,6 +70,7 @@ If an exception occurs while performing an operation on an image, or the image f
  
 System flow
 =========
+
  <img src="./img/pipeline.png"><br/>
 1.Local Application uploads the file with the list of images to S3
  2.Local Application sends a message (queue) stating of the location of the images list on S3

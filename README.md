@@ -73,24 +73,24 @@ System flow
 
  <img src="./img/pipeline.png"><br/>
  
-1.Local Application uploads the file with the list of images to S3
- 2.Local Application sends a message (queue) stating of the location of the images list on S3
- Local Application does one of the two:
- Starts the manager
- Checks if a manager is active and if not, starts it
- 4.Manager downloads list of images
- 5.Manager creates an SQS message for each URL in the list of images
- 6.Manager bootstraps nodes to process messages
- 7.Worker gets an image message from an SQS queue
- 8.Worker downloads the image indicated in the message
- 10.Worker applies OCR on image.
- 11.Worker puts a message in an SQS queue indicating the original URL of the image and the text.
- 12.Manager reads all the Workers' messages from SQS and creates one summary file
- 13.Manager uploads summary file to S3
- 14.Manager posts an SQS message about summary file
- 15.Local Application reads SQS message
- 16.Local Application downloads summary file from S3
- 16.Local Application creates html output files
+1.Local Application uploads the file with the list of images to S3 
+ 2.Local Application sends a message (queue) stating of the location of the images list on S3 
+ Local Application does one of the two: 
+ Starts the manager 
+ Checks if a manager is active and if not, starts it 
+ 4.Manager downloads list of images 
+ 5.Manager creates an SQS message for each URL in the list of images 
+ 6.Manager bootstraps nodes to process messages 
+ 7.Worker gets an image message from an SQS queue 
+ 8.Worker downloads the image indicated in the message 
+ 10.Worker applies OCR on image. 
+ 11.Worker puts a message in an SQS queue indicating the original URL of the image and the text. 
+ 12.Manager reads all the Workers' messages from SQS and creates one summary file 
+ 13.Manager uploads summary file to S3 
+ 14.Manager posts an SQS message about summary file 
+ 15.Local Application reads SQS message 
+ 16.Local Application downloads summary file from S3 
+ 16.Local Application creates html output files 
  
 How to run
 =========

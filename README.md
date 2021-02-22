@@ -6,8 +6,8 @@ image with its recognized text on a webpage.
 <!--ts-->
    * [System Architecture](#System-Architecture)
         * [Local Application](#Local-Application)
-        * [The Manager](#manager)
-        * [The Worker](#worker)
+        * [The Manager](#The-Manager)
+        * [The Worker](#The-Worker)
    * [Input and Output File Format ](#Input-and-Output-File-Format)  
    * [System flow ](#system-flow)  
    * [How to run](#How-to-run)

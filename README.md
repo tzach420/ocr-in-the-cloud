@@ -75,8 +75,8 @@ System flow
  1.Local Application uploads the file with the list of images to S3<br/>
  2.Local Application sends a message (queue) stating of the location of the images list on S3 <br/>
  3.Local Application does one of the two: <br/>
-  * Starts the manager <br/>
-  * Checks if a manager is active and if not, starts it <br/>
+  Starts the manager <br/>
+  Checks if a manager is active and if not, starts it <br/>
 4.Manager downloads list of images <br/>
  5.Manager creates an SQS message for each URL in the list of images <br/>
  6.Manager bootstraps nodes to process messages <br/>

@@ -93,13 +93,13 @@ System flow
  
 How to run
 =========
-Please make sure you have maven and Amazon CLI installed on your machine.
- 1.Clone the projet.
-2.Update the credentials file on your machine with your AWS credentials.
- 3.Open the terminal in the folder and run: mvn compile
- 4.run: mvn exec:java -Dexec.mainClass=localapp.Main -Dexec.args="x y n terminate 
- where x is the input file name (should be in the directory of the project),
-  y is the output file name, n is the workers - files ratio (how many image files per worker) 
+Please make sure you have maven and Amazon CLI installed on your machine.<br/>
+ 1.Clone the projet.<br/>
+2.Update the credentials file on your machine with your AWS credentials.<br/>
+ 3.Open the terminal in the folder and run: mvn compile<br/>
+ 4.run: mvn exec:java -Dexec.mainClass=localapp.Main -Dexec.args="x y n terminate <br/>
+ where x is the input file name (should be in the directory of the project),<br/>
+  y is the output file name, n is the workers - files ratio (how many image files per worker)<br/> 
   and terminate (optional) if you want to terminate the manager at the end of the run.
 
 
